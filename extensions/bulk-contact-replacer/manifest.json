@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Bulk Contact Replacer (Template)",
+  "version": "2.0.0",
+  "description": "Configurable template for replacing contact fields across records and logging results.",
+  "permissions": ["storage", "tabs", "scripting", "downloads"],
+  "host_permissions": ["https://app.example.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Bulk Contact Replacer"
+  }
+}

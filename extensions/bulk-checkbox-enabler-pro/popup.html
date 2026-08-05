@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body { font-family: Arial, sans-serif; width: 380px; padding: 12px; }
+    button { width: 100%; padding: 9px; margin: 6px 0; cursor: pointer; }
+    label { display:block; font-size:12px; margin-top:8px; }
+    input[type="number"] { width: 90px; }
+    #status { white-space: pre-wrap; background: #f5f5f5; padding: 8px; max-height: 260px; overflow:auto; font-size: 12px; }
+    .small { color:#555; font-size:12px; }
+    .row { display:flex; gap:8px; align-items:center; }
+  </style>
+</head>
+<body>
+  <h3>Client Checkbox Enabler Pro</h3>
+  <div class="small">Run from the org/record list page. Opens each client, clicks Edit, enables missing boxes, saves only if changed, then continues.</div>
+  <label>Delay between clients: <input id="delayMs" type="number" value="1200" step="100" min="500"> ms</label>
+  <label class="row"><input id="stopOnError" type="checkbox" checked> Stop automatically on unexpected page/error</label>
+  <button id="runCurrent">Start New Run</button>
+  <button id="resume">Resume Saved Run</button>
+  <button id="stop">Stop / Pause</button>
+  <button id="exportCsv">Export CSV</button>
+  <button id="clear">Clear Saved Run</button>
+  <div id="status">Ready.</div>
+  <script src="popup.js"></script>
+</body>
+</html>

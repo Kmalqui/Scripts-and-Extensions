@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Bulk Checkbox Enabler (Template)",
+  "version": "3.0",
+  "description": "Template for paging through records and enabling configured checkboxes.",
+  "permissions": ["tabs", "scripting", "storage"],
+  "host_permissions": ["https://app.example.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Enable Client Settings"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

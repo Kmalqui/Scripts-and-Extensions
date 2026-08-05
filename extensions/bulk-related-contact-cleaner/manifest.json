@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Bulk Related Contact Cleaner (Template)",
+  "version": "1.2",
+  "description": "Configurable template for clearing a related-contact field and disabling a paired setting across records.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://app.example.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Bulk Remove Assistant"
+  }
+}

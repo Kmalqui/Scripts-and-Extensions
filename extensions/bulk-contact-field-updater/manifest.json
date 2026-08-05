@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Bulk Contact Field Updater (Template)",
+  "version": "1.3.0",
+  "description": "Configurable template for replacing contact fields or filling an empty slot across records.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://app.example.com/*"
+  ],
+  "action": {
+    "default_title": "Bulk Contact Field Updater"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

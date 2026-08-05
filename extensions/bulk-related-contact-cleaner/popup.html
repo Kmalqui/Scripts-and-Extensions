@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bulk Remove Assistant</title>
+  <style>
+    body { font-family: Arial, sans-serif; width: 340px; padding: 12px; }
+    button { width: 100%; padding: 10px; margin-bottom: 8px; cursor: pointer; }
+    input { width: 100%; padding: 8px; box-sizing: border-box; margin-bottom: 8px; }
+    label { display: block; font-size: 12px; margin-bottom: 4px; }
+    #status { font-size: 12px; white-space: pre-wrap; background: #f5f5f5; padding: 8px; border-radius: 6px; min-height: 95px; }
+    .hint { font-size: 11px; color: #555; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <label for="emailInput">Assistant email to remove</label>
+  <input id="emailInput" value="TARGET_EMAIL" />
+  <div class="hint">Start from the listing/search/client-list page that contains the record details links.</div>
+
+  <button id="startBtn">Start from this page</button>
+  <button id="exportBtn">Export logs</button>
+  <button id="clearBtn">Clear logs/state</button>
+  <div id="status">Ready.</div>
+  <script src="popup.js"></script>
+</body>
+</html>

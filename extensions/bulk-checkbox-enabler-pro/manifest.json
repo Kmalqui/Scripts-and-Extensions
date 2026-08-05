@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Bulk Checkbox Enabler Pro (Template)",
+  "version": "4.0",
+  "description": "Configurable template for paging through records, enabling checkboxes, resuming, and exporting results.",
+  "permissions": ["tabs", "scripting", "storage", "downloads"],
+  "host_permissions": ["https://app.example.com/*"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Enable Client Settings Pro"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

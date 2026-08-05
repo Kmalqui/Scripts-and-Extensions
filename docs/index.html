@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Configurable Chrome extension templates for repetitive web workflows.">
+  <title>Scripts and Extensions</title>
+  <style>
+    :root { color-scheme: dark; --bg:#08111f; --panel:#101d30; --line:#263a55; --text:#edf4ff; --muted:#a9bad1; --accent:#61dafb; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(circle at top,#132742 0,var(--bg) 42%); color:var(--text); font:16px/1.55 system-ui,sans-serif; }
+    main { width:min(1080px,calc(100% - 32px)); margin:auto; padding:72px 0; }
+    header { max-width:760px; margin-bottom:40px; }
+    h1 { margin:0 0 14px; font-size:clamp(2.5rem,7vw,5rem); line-height:.95; letter-spacing:-.05em; }
+    header p { color:var(--muted); font-size:1.15rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+    article { display:flex; flex-direction:column; min-height:250px; padding:24px; border:1px solid var(--line); border-radius:18px; background:linear-gradient(145deg,rgba(20,39,64,.92),rgba(10,21,37,.92)); box-shadow:0 18px 45px rgba(0,0,0,.2); }
+    h2 { margin:0 0 10px; font-size:1.25rem; }
+    article p { color:var(--muted); flex:1; }
+    .actions { display:flex; gap:10px; }
+    a { color:var(--accent); }
+    .button { padding:9px 13px; border:1px solid var(--line); border-radius:10px; text-decoration:none; }
+    .primary { background:var(--accent); border-color:var(--accent); color:#04111c; font-weight:700; }
+    footer { margin-top:44px; color:var(--muted); }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Scripts and Extensions</h1>
+    <p>Generic Chrome extension templates for bulk web workflows. Configure each template for a site you are authorized to automate, test it safely, then load it unpacked or download the ZIP.</p>
+  </header>
+  <section class="grid" aria-label="Extension templates">
+    <article><h2>Bulk Checkbox Enabler — Basic</h2><p>Page through records and enable a configured set of options.</p><div class="actions"><a class="button primary" href="https://github.com/Kmalqui/Scripts-and-Extensions/raw/main/downloads/bulk-checkbox-enabler-basic.zip">Download</a><a class="button" href="https://github.com/Kmalqui/Scripts-and-Extensions/tree/main/extensions/bulk-checkbox-enabler-basic">Source</a></div></article>
+    <article><h2>Bulk Checkbox Enabler — Pro</h2><p>Add resume support, change-only saves, and CSV export to the workflow.</p><div class="actions"><a class="button primary" href="https://github.com/Kmalqui/Scripts-and-Extensions/raw/main/downloads/bulk-checkbox-enabler-pro.zip">Download</a><a class="button" href="https://github.com/Kmalqui/Scripts-and-Extensions/tree/main/extensions/bulk-checkbox-enabler-pro">Source</a></div></article>
+    <article><h2>Bulk Contact Field Updater</h2><p>Replace contact values or fill the first empty contact slot.</p><div class="actions"><a class="button primary" href="https://github.com/Kmalqui/Scripts-and-Extensions/raw/main/downloads/bulk-contact-field-updater.zip">Download</a><a class="button" href="https://github.com/Kmalqui/Scripts-and-Extensions/tree/main/extensions/bulk-contact-field-updater">Source</a></div></article>
+    <article><h2>Bulk Contact Replacer</h2><p>Find one configured contact across records and replace it with another.</p><div class="actions"><a class="button primary" href="https://github.com/Kmalqui/Scripts-and-Extensions/raw/main/downloads/bulk-contact-replacer.zip">Download</a><a class="button" href="https://github.com/Kmalqui/Scripts-and-Extensions/tree/main/extensions/bulk-contact-replacer">Source</a></div></article>
+    <article><h2>Bulk Email Field Cleaner</h2><p>Clear a configured email value and log the result for each record.</p><div class="actions"><a class="button primary" href="https://github.com/Kmalqui/Scripts-and-Extensions/raw/main/downloads/bulk-email-field-cleaner.zip">Download</a><a class="button" href="https://github.com/Kmalqui/Scripts-and-Extensions/tree/main/extensions/bulk-email-field-cleaner">Source</a></div></article>
+    <article><h2>Bulk Related Contact Cleaner</h2><p>Clear a related-contact field and disable an associated setting.</p><div class="actions"><a class="button primary" href="https://github.com/Kmalqui/Scripts-and-Extensions/raw/main/downloads/bulk-related-contact-cleaner.zip">Download</a><a class="button" href="https://github.com/Kmalqui/Scripts-and-Extensions/tree/main/extensions/bulk-related-contact-cleaner">Source</a></div></article>
+  </section>
+  <footer>Chrome Manifest V3 · Plain JavaScript · Updated August 5, 2026</footer>
+</main>
+</body>
+</html>
