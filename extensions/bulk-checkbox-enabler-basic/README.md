@@ -1,6 +1,6 @@
 # Bulk Checkbox Enabler — Basic
 
-A Chrome Manifest V3 template for paging through records and enabling configured checkboxes.
+A Chrome Manifest template for paging through records and enabling configured checkboxes.
 
 ## Configure before use
 
