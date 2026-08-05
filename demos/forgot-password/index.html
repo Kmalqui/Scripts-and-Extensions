@@ -106,6 +106,17 @@
       flex: 1;
       color: #315e42;
       font-size: 13px;
+      align-self: stretch;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      color: #17211d;
+      font-weight: 700;
+      background: rgba(200,245,90,.28);
+      box-shadow: inset 0 -3px 0 #9fc83f;
     }
 
     .forgot {
@@ -115,8 +126,19 @@
       background: transparent;
       cursor: pointer;
       font-family: inherit;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+    }
+
+    .panel-stage { perspective: 900px; }
+    .card-panel { animation: pageFlipIn .38s ease both; transform-origin: left center; }
+    .card-panel[hidden] { display: none; }
+    .reset-panel { padding: 28px 32px 32px; }
+    .reset-panel h2 { margin: 0 0 8px; font-size: 18px; }
+    .reset-panel p { margin: 0 0 20px; color: #59645e; line-height: 1.45; }
+    .reset-panel label { display: block; margin-bottom: 7px; font-weight: 700; }
+    .reset-panel input { width: 100%; height: 34px; margin-bottom: 14px; }
+    @keyframes pageFlipIn {
+      from { opacity: 0; transform: rotateY(-12deg) translateX(12px); }
+      to { opacity: 1; transform: rotateY(0) translateX(0); }
     }
 
     .form-row {
@@ -383,27 +405,39 @@
   <main class="wrap">
     <section class="login-card">
       <div class="tabs">
-        <div class="tab">Login</div>
+        <button id="loginTab" class="tab active" type="button">Login</button>
         <button id="forgotPasswordTop" class="tab forgot" type="button">Forgot Your Password?</button>
       </div>
 
-      <div class="form-row">
-        <label>Account Username</label>
-        <input id="loginUsername" type="text" value="testuser@example.com" />
-      </div>
+      <div class="panel-stage">
+        <div id="loginPanel" class="card-panel">
+          <div class="form-row">
+            <label>Account Username</label>
+            <input id="loginUsername" type="text" value="testuser@example.com" />
+          </div>
 
-      <div class="form-row password">
-        <label>Password</label>
-        <input id="loginPassword" type="password" value="password" />
-      </div>
+          <div class="form-row password">
+            <label>Password</label>
+            <input id="loginPassword" type="password" value="password" />
+          </div>
 
-      <div class="button-row">
-        <button id="loginButton" class="yellow-btn">Login</button>
-        <button id="unlockButton" class="yellow-btn unlock-btn">Unlock My Account</button>
-      </div>
+          <div class="button-row">
+            <button id="loginButton" class="yellow-btn">Login</button>
+            <button id="unlockButton" class="yellow-btn unlock-btn">Unlock My Account</button>
+          </div>
 
-      <div id="lockedMessage" class="locked-message">
-        The account is locked after too many consecutive failed login attempts. Contact Helpdesk.
+          <div id="lockedMessage" class="locked-message">
+            The account is locked after too many consecutive failed login attempts. Contact Helpdesk.
+          </div>
+        </div>
+
+        <div id="forgotPanel" class="card-panel reset-panel" hidden>
+          <h2>Reset your password</h2>
+          <p>Enter the email address associated with your demo account.</p>
+          <label for="resetEmail">Email address</label>
+          <input id="resetEmail" type="text" value="testuser@example.com" />
+          <button id="sendResetButton" class="yellow-btn" type="button">Send reset link</button>
+        </div>
       </div>
     </section>
 
@@ -485,6 +519,19 @@
     const resetModal = document.getElementById("resetModal");
     const forgotPasswordTop = document.getElementById("forgotPasswordTop");
     const forgotPasswordBottom = document.getElementById("forgotPasswordBottom");
+    const loginTab = document.getElementById("loginTab");
+    const loginPanel = document.getElementById("loginPanel");
+    const forgotPanel = document.getElementById("forgotPanel");
+
+    function showPanel(panelName, event) {
+      if (event) event.preventDefault();
+      const showForgot = panelName === "forgot";
+      loginPanel.hidden = showForgot;
+      forgotPanel.hidden = !showForgot;
+      loginTab.classList.toggle("active", !showForgot);
+      forgotPasswordTop.classList.toggle("active", showForgot);
+      (showForgot ? document.getElementById("resetEmail") : loginUsername).focus();
+    }
 
     function showResetModal(event) {
       if (event) event.preventDefault();
@@ -617,8 +664,10 @@
     unlockButton.addEventListener("click", showModal);
     document.getElementById("cancelUnlock").addEventListener("click", hideModal);
     document.getElementById("submitUnlock").addEventListener("click", submitUnlock);
-    forgotPasswordTop.addEventListener("click", showResetModal);
-    forgotPasswordBottom.addEventListener("click", showResetModal);
+    loginTab.addEventListener("click", (event) => showPanel("login", event));
+    forgotPasswordTop.addEventListener("click", (event) => showPanel("forgot", event));
+    forgotPasswordBottom.addEventListener("click", (event) => showPanel("forgot", event));
+    document.getElementById("sendResetButton").addEventListener("click", showResetModal);
     document.getElementById("closeResetModal").addEventListener("click", hideResetModal);
 
     usernameInput.addEventListener("input", () => {
