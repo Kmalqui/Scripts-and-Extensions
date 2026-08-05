@@ -131,11 +131,11 @@
     .panel-stage { perspective: 900px; }
     .card-panel { animation: pageFlipIn .38s ease both; transform-origin: left center; }
     .card-panel[hidden] { display: none; }
-    .reset-panel { padding: 28px 32px 32px; }
+    .reset-panel { padding: 28px 32px 32px; text-align: center; }
     .reset-panel h2 { margin: 0 0 8px; font-size: 18px; }
     .reset-panel p { margin: 0 0 20px; color: #59645e; line-height: 1.45; }
     .reset-panel label { display: block; margin-bottom: 7px; font-weight: 700; }
-    .reset-panel input { width: 100%; height: 34px; margin-bottom: 14px; }
+    .reset-panel input { display: block; width: 100%; max-width: 280px; height: 34px; margin: 0 auto 14px; text-align: center; }
     @keyframes pageFlipIn {
       from { opacity: 0; transform: rotateY(-12deg) translateX(12px); }
       to { opacity: 1; transform: rotateY(0) translateX(0); }
