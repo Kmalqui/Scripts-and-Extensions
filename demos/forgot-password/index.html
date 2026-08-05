@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Recovery Demo</title>
+  <style>
+    :root {
+      --blue: #317ca0;
+      --panel: #f4f1e8;
+      --input: #eef3f8;
+      --border: #b8c9dc;
+      --link: #005fc8;
+      --green: #217a36;
+      --red: #c90000;
+      --toast-red: #a12626;
+      --amber: #8a5b00;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #444;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    .top-bar {
+      height: 68px;
+      background: var(--blue);
+      border-bottom: 10px solid #e6ecf3;
+      display: flex;
+      align-items: center;
+      padding-left: 210px;
+      color: white;
+      font-family: Georgia, "Times New Roman", serif;
+      letter-spacing: 2px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .cloud {
+      display: inline-block;
+      margin-left: 4px;
+      width: 16px;
+      height: 9px;
+      background: #fff;
+      border-radius: 10px;
+      position: relative;
+      top: 1px;
+    }
+
+    .cloud:before {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fff;
+      left: 2px;
+      top: -4px;
+    }
+
+    .cloud:after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #fff;
+      right: 1px;
+      top: -5px;
+    }
+
+    .wrap {
+      display: flex;
+      gap: 50px;
+      padding-top: 44px;
+      justify-content: center;
+      min-height: 300px;
+    }
+
+    .login-card {
+      width: 388px;
+      min-height: 224px;
+      background: var(--panel);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .tabs {
+      height: 40px;
+      border-bottom: 1px solid #e0ddd4;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .tab {
+      flex: 1;
+      color: #286c91;
+      font-size: 13px;
+    }
+
+    .forgot {
+      color: var(--link);
+      font-size: 12px;
+    }
+
+    .form-row {
+      display: flex;
+      align-items: center;
+      margin: 34px 40px 0 60px;
+      gap: 48px;
+    }
+
+    .form-row.password {
+      margin-top: 8px;
+      gap: 73px;
+    }
+
+    label { white-space: nowrap; }
+
+    input[type="text"], input[type="password"] {
+      height: 21px;
+      border: 1px solid var(--border);
+      background: var(--input);
+      padding: 2px 5px;
+      width: 152px;
+      font-size: 12px;
+    }
+
+    .password input {
+      border: 2px solid #111;
+      background: #f7fbff;
+    }
+
+    .button-row {
+      margin-left: 193px;
+      margin-top: 8px;
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      width: 180px;
+    }
+
+    .yellow-btn {
+      min-width: 75px;
+      border: 1px solid #e2b94e;
+      border-radius: 5px;
+      background: linear-gradient(#fff7b8, #ffd947);
+      color: #111;
+      height: 24px;
+      cursor: pointer;
+      font-size: 12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    }
+
+    .yellow-btn:hover { filter: brightness(1.03); }
+
+    .unlock-btn {
+      min-width: 122px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .locked-message {
+      display: none;
+      margin: 8px 40px 0 193px;
+      width: 170px;
+      color: var(--red);
+      font-weight: bold;
+      line-height: 1.1;
+    }
+
+    .welcome {
+      width: 520px;
+      padding-top: 18px;
+      line-height: 1.25;
+    }
+
+    .welcome a {
+      color: var(--link);
+      text-decoration: none;
+    }
+
+    .bottom-line {
+      border-top: 1px solid #d7d890;
+      height: 53px;
+      background: #fbfbf8;
+    }
+
+    .footer-strip {
+      height: 25px;
+      background: #e6ecf3;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .demo-controls {
+      position: fixed;
+      left: 16px;
+      bottom: 42px;
+      width: 350px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.12);
+      padding: 12px;
+      line-height: 1.35;
+    }
+
+    .demo-controls strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .demo-controls button {
+      margin-top: 8px;
+      margin-right: 6px;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .modal {
+      width: 405px;
+      background: #444251;
+      color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.35);
+      padding: 18px;
+    }
+
+    .modal-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    .globe {
+      width: 15px;
+      height: 15px;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .modal input {
+      width: 100%;
+      height: 28px;
+      margin: 7px 0 7px;
+      border: 1px solid #aaa;
+      border-radius: 3px;
+      padding: 4px 7px;
+    }
+
+    .helper {
+      color: #d7d7d7;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    .inline-error {
+      color: #ffd4d4;
+      font-size: 11px;
+      margin-top: 7px;
+      min-height: 15px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .ok-btn {
+      background: #12c5d7;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      padding: 9px 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .cancel-btn {
+      background: #565363;
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      padding: 9px 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .status {
+      position: fixed;
+      right: 18px;
+      bottom: 42px;
+      width: 415px;
+      background: #f7fbff;
+      border: 1px solid #b8c9dc;
+      border-left: 6px solid #2a6d9b;
+      border-radius: 4px;
+      padding: 12px 14px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.18);
+      display: none;
+      z-index: 20;
+      line-height: 1.4;
+    }
+
+    .status.success { border-left-color: var(--green); }
+    .status.fail { border-left-color: var(--toast-red); }
+    .status.warn { border-left-color: var(--amber); }
+
+    .status strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 13px;
+    }
+
+    .loading {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 52%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.15);
+      padding: 16px;
+      z-index: 9;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid #d9e5ef;
+      border-top-color: #317ca0;
+      border-radius: 50%;
+      margin: 0 auto 10px;
+      animation: spin .8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">DEMO PORTAL <span class="cloud"></span></div>
+
+  <main class="wrap">
+    <section class="login-card">
+      <div class="tabs">
+        <div class="tab">Login</div>
+        <div class="tab forgot">Forgot Your Password?</div>
+      </div>
+
+      <div class="form-row">
+        <label>Account Username</label>
+        <input id="loginUsername" type="text" value="demo.user@example.com" />
+      </div>
+
+      <div class="form-row password">
+        <label>Password</label>
+        <input id="loginPassword" type="password" value="password" />
+      </div>
+
+      <div class="button-row">
+        <button id="loginButton" class="yellow-btn">Login</button>
+        <button id="unlockButton" class="yellow-btn unlock-btn">Unlock My Account</button>
+      </div>
+
+      <div id="lockedMessage" class="locked-message">
+        The account is locked after too many consecutive failed login attempts. Contact Helpdesk.
+      </div>
+    </section>
+
+    <section class="welcome">
+      <p>Welcome to the Demo Account Portal.</p>
+      <ul>
+        <li>If you are a new user, please contact support for your account information.</li>
+        <li>If you have forgotten your password, please go to the <a href="#">Forgot Your Password</a> page.</li>
+      </ul>
+    </section>
+  </main>
+
+  <div class="bottom-line"></div>
+  <div class="footer-strip"></div>
+
+  <div class="demo-controls">
+    <strong>Demo controls</strong>
+    Click Login to simulate a locked-account response. If the Account Username field contains an email, the unlock popup will automatically strip the domain.
+    <br>
+    <button id="simulateLocked" class="yellow-btn">Show Locked State</button>
+    <button id="resetDemo" class="yellow-btn">Reset</button>
+  </div>
+
+  <div id="unlockModal" class="modal-backdrop">
+    <div class="modal">
+      <div class="modal-title"><span class="globe"></span><strong>accounts.example.com</strong></div>
+      <div>Enter your account username to unlock your account.</div>
+      <input id="usernameInput" type="text" placeholder="Username only, example: testuser" />
+      <div class="helper">
+        Username only. Email domains are automatically removed.<br>
+        Correct: <strong>testuser</strong><br>
+        If entered as <strong>demo.user@example.com</strong>, this demo will use <strong>testuser</strong>.<br><br>
+        Demo users: <strong>testuser</strong>, <strong>lockeduser</strong>, <strong>faileduser</strong>
+      </div>
+      <div id="modalError" class="inline-error"></div>
+      <div class="modal-buttons">
+        <button id="submitUnlock" class="ok-btn">Unlock Account</button>
+        <button id="cancelUnlock" class="cancel-btn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading" class="loading">
+    <div class="spinner"></div>
+    <strong>Unlocking account...</strong>
+    <div id="loadingText">This demo is simulating a backend permission check and unlock request.</div>
+  </div>
+
+  <div id="status" class="status"></div>
+
+  <script>
+    const demoUsers = {
+      "testuser": { result: "success" },
+      "lockeduser": { result: "success" },
+      "faileduser": { result: "failure" }
+    };
+
+    const unlockModal = document.getElementById("unlockModal");
+    const usernameInput = document.getElementById("usernameInput");
+    const modalError = document.getElementById("modalError");
+    const loading = document.getElementById("loading");
+    const loadingText = document.getElementById("loadingText");
+    const statusBox = document.getElementById("status");
+    const lockedMessage = document.getElementById("lockedMessage");
+    const unlockButton = document.getElementById("unlockButton");
+    const loginUsername = document.getElementById("loginUsername");
+    const loginPassword = document.getElementById("loginPassword");
+
+    function normalizeUsername(value) {
+      const trimmed = value.trim();
+      if (!trimmed) return "";
+      return trimmed.split("@")[0].trim();
+    }
+
+    function showLockedState() {
+      lockedMessage.style.display = "block";
+      unlockButton.style.display = "inline-block";
+    }
+
+    function clearLockedState() {
+      lockedMessage.style.display = "none";
+      unlockButton.style.display = "none";
+    }
+
+    function showModal() {
+      modalError.textContent = "";
+      const normalized = normalizeUsername(loginUsername.value);
+      usernameInput.value = normalized;
+      unlockModal.style.display = "flex";
+      setTimeout(() => {
+        usernameInput.focus();
+        usernameInput.select();
+      }, 50);
+    }
+
+    function hideModal() {
+      unlockModal.style.display = "none";
+    }
+
+    function showStatus(type, title, message) {
+      statusBox.className = "status " + type;
+      statusBox.innerHTML = "<strong>" + title + "</strong>" + message;
+      statusBox.style.display = "block";
+      setTimeout(() => {
+        statusBox.style.display = "none";
+      }, 9000);
+    }
+
+    function validateUsername(value) {
+      const username = normalizeUsername(value);
+
+      if (!username) {
+        return { valid: false, message: "Please enter your username." };
+      }
+
+      if (username.includes(" ")) {
+        return { valid: false, message: "Username cannot contain spaces." };
+      }
+
+      return { valid: true, username };
+    }
+
+    function submitUnlock() {
+      const originalValue = usernameInput.value.trim();
+      const validation = validateUsername(originalValue);
+
+      if (!validation.valid) {
+        modalError.textContent = validation.message;
+        return;
+      }
+
+      const username = validation.username.toLowerCase();
+      usernameInput.value = validation.username;
+
+      const user = demoUsers[username];
+
+      if (!user) {
+        modalError.textContent = "The username \"" + validation.username + "\" could not be found. Please verify the username and try again.";
+        return;
+      }
+
+      hideModal();
+      loadingText.textContent = "Checking and unlocking account for " + validation.username + "...";
+      loading.style.display = "block";
+
+      // Production implementation:
+      // Frontend sends username to backend API.
+      // Backend validates user, performs unlock,
+      // audits the request, and returns success/failure.
+      // No permission assignment logic should exist in the frontend.
+      setTimeout(() => {
+        loading.style.display = "none";
+
+        if (user.result === "success") {
+          clearLockedState();
+          loginUsername.value = validation.username;
+          loginPassword.value = "";
+          loginPassword.focus();
+
+          showStatus(
+            "success",
+            "Account Unlocked",
+            "The account for <strong>" + validation.username + "</strong> has been successfully unlocked. Please try logging in again."
+          );
+        } else {
+          showStatus(
+            "fail",
+            "Unable to Unlock Account",
+            "We were unable to unlock the account for <strong>" + validation.username + "</strong>. Please contact Helpdesk."
+          );
+        }
+      }, 1200);
+    }
+
+    document.getElementById("loginButton").addEventListener("click", showLockedState);
+    document.getElementById("simulateLocked").addEventListener("click", showLockedState);
+    document.getElementById("resetDemo").addEventListener("click", () => {
+      clearLockedState();
+      statusBox.style.display = "none";
+      loading.style.display = "none";
+      hideModal();
+      loginUsername.value = "demo.user@example.com";
+      loginPassword.value = "password";
+      loginPassword.focus();
+    });
+
+    unlockButton.addEventListener("click", showModal);
+    document.getElementById("cancelUnlock").addEventListener("click", hideModal);
+    document.getElementById("submitUnlock").addEventListener("click", submitUnlock);
+
+    usernameInput.addEventListener("input", () => {
+      const original = usernameInput.value;
+      if (original.includes("@")) {
+        usernameInput.value = normalizeUsername(original);
+      }
+    });
+
+    usernameInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") submitUnlock();
+      if (event.key === "Escape") hideModal();
+    });
+  </script>
+</body>
+</html>
+
