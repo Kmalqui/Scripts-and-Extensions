@@ -114,15 +114,15 @@
     }
 
     .form-row {
-      display: flex;
+      display: grid;
+      grid-template-columns: 118px minmax(0, 1fr);
       align-items: center;
-      margin: 34px 40px 0 60px;
-      gap: 48px;
+      margin: 34px 32px 0;
+      gap: 16px;
     }
 
     .form-row.password {
       margin-top: 8px;
-      gap: 73px;
     }
 
     label { white-space: nowrap; }
@@ -132,7 +132,7 @@
       border: 1px solid var(--border);
       background: var(--input);
       padding: 2px 5px;
-      width: 152px;
+      width: 100%;
       font-size: 12px;
     }
 
@@ -142,7 +142,7 @@
     }
 
     .button-row {
-      margin-left: 193px;
+      margin-left: 166px;
       margin-top: 8px;
       display: flex;
       gap: 7px;
@@ -173,8 +173,8 @@
 
     .locked-message {
       display: none;
-      margin: 8px 40px 0 193px;
-      width: 170px;
+      margin: 8px 32px 0 166px;
+      width: 190px;
       color: var(--red);
       font-weight: bold;
       line-height: 1.1;
@@ -383,7 +383,7 @@
 
       <div class="form-row">
         <label>Account Username</label>
-        <input id="loginUsername" type="text" value="demo.user@example.com" />
+        <input id="loginUsername" type="text" value="testuser@example.com" />
       </div>
 
       <div class="form-row password">
@@ -429,7 +429,7 @@
       <div class="helper">
         Username only. Email domains are automatically removed.<br>
         Correct: <strong>testuser</strong><br>
-        If entered as <strong>demo.user@example.com</strong>, this demo will use <strong>testuser</strong>.<br><br>
+        If entered as <strong>testuser@example.com</strong>, this demo will use <strong>testuser</strong>.<br><br>
         Demo users: <strong>testuser</strong>, <strong>lockeduser</strong>, <strong>faileduser</strong>
       </div>
       <div id="modalError" class="inline-error"></div>
@@ -579,7 +579,7 @@
       statusBox.style.display = "none";
       loading.style.display = "none";
       hideModal();
-      loginUsername.value = "demo.user@example.com";
+      loginUsername.value = "testuser@example.com";
       loginPassword.value = "password";
       loginPassword.focus();
     });

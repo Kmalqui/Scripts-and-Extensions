@@ -10,7 +10,7 @@ How to open:
 New in v3:
 - The unlock popup auto-populates with the account portal Username value from the login page.
 - If the login username is an email address, the popup strips the domain and uses username only.
-  Example: demo.user@example.com becomes testuser.
+  Example: testuser@example.com becomes testuser.
 - If a user types/pastes an email address inside the popup, the domain is automatically removed.
 - Success and failure messages include the username.
 - After success, the locked message and Unlock button disappear, the password field clears, and focus returns to password.
