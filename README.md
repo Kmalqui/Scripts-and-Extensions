@@ -1,6 +1,6 @@
-# Chrome Extensions
+# Katrina Malqui Portfolio
 
-Reusable, configurable browser-extension templates for repetitive web workflows.
+Professional portfolio and a collection of reusable, configurable browser-extension templates for repetitive web workflows.
 
 Every package uses neutral placeholders and must be configured for a site you are authorized to automate. Review the host permissions, selectors, routes, field identifiers, and example values before loading an extension. Test in a non-production environment first.
 
@@ -8,8 +8,8 @@ Every package uses neutral placeholders and must be configured for a site you ar
 
 | Template | What it demonstrates | Source | Download |
 |---|---|---|---|
-| Bulk Checkbox Enabler — Basic | Page through records and enable configured options | [Source](extensions/bulk-checkbox-enabler-basic/) | [ZIP](downloads/bulk-checkbox-enabler-basic.zip) |
-| Bulk Checkbox Enabler — Pro | Resume, change-only saves, and CSV export | [Source](extensions/bulk-checkbox-enabler-pro/) | [ZIP](downloads/bulk-checkbox-enabler-pro.zip) |
+| Bulk Checkbox Enabler - Basic | Page through records and enable configured options | [Source](extensions/bulk-checkbox-enabler-basic/) | [ZIP](downloads/bulk-checkbox-enabler-basic.zip) |
+| Bulk Checkbox Enabler - Pro | Resume, change-only saves, and CSV export | [Source](extensions/bulk-checkbox-enabler-pro/) | [ZIP](downloads/bulk-checkbox-enabler-pro.zip) |
 | Bulk Contact Field Updater | Replace contact values or fill the first empty slot | [Source](extensions/bulk-contact-field-updater/) | [ZIP](downloads/bulk-contact-field-updater.zip) |
 | Bulk Contact Replacer | Replace one configured contact with another across records | [Source](extensions/bulk-contact-replacer/) | [ZIP](downloads/bulk-contact-replacer.zip) |
 | Bulk Email Field Cleaner | Clear a configured email field and log results | [Source](extensions/bulk-email-field-cleaner/) | [ZIP](downloads/bulk-email-field-cleaner.zip) |
