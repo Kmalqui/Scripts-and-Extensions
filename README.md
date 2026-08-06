@@ -1,4 +1,4 @@
-# Extensions
+# Chrome Extensions
 
 Reusable, configurable browser-extension templates for repetitive web workflows.
 
