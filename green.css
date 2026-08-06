@@ -18,7 +18,7 @@ body { background-image: radial-gradient(#c7d0c5 1.1px, transparent 1.1px); }
 .button:hover, .button:focus-visible { box-shadow: 3px 3px 0 #76942f; }
 .section-tag { box-shadow: 3px 3px 0 #b3df4c; }
 .card, .skill-groups { box-shadow: 8px 8px 0 #b3df4c; }
-.about { max-width: 1080px; padding: clamp(38px, 5vw, 64px) 5vw; background: rgba(244, 241, 232, .9); box-shadow: 10px 10px 0 #b3df4c; }
+.about { width: min(calc(100% - 48px), 940px); max-width: none; padding: 36px 38px; background: rgba(244, 241, 232, .9); box-shadow: 10px 10px 0 #b3df4c; }
 .about { grid-template-columns: 1fr; gap: 12px; }
 .about-copy { min-width: 0; }
 .about .about-intro { margin: 0 0 25px; font: italic 500 clamp(1.45rem, 2.8vw, 2.25rem)/1.25 Georgia, "Times New Roman", serif; letter-spacing: -.025em; }
@@ -39,6 +39,7 @@ body { background-image: radial-gradient(#c7d0c5 1.1px, transparent 1.1px); }
 
 @media (max-width: 760px) {
   .grid { grid-template-columns: 1fr; }
+  .about { width: auto; padding: 32px 24px; }
   .about-points { grid-template-columns: 1fr; }
   .about-points article:nth-child(n) { transform: none; }
   .resume-gate { margin-left: 12px; margin-right: 12px; flex-direction: column; align-items: flex-start; transform: none; }
