@@ -10,6 +10,7 @@ body { background-image: radial-gradient(#c7d0c5 1.1px, transparent 1.1px); }
 .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .card { min-width: 0; }
 .more-projects { display: table; margin: 42px auto 0; padding: 8px 14px; border: 1px solid var(--ink); background: var(--yellow); box-shadow: 4px 4px 0 var(--lime); font: italic 600 .95rem/1.4 Georgia, "Times New Roman", serif; transform: rotate(-1deg); }
+.projects-intro { max-width: 790px; margin: -28px 0 48px; color: var(--muted); font-size: 1.05rem; }
 .hero { box-shadow: 0 14px 0 #9fca3d; }
 .brand { box-shadow: 4px 4px 0 #76942f; }
 .side-note { box-shadow: 5px 5px 0 #76942f; }
@@ -17,7 +18,7 @@ body { background-image: radial-gradient(#c7d0c5 1.1px, transparent 1.1px); }
 .button:hover, .button:focus-visible { box-shadow: 3px 3px 0 #76942f; }
 .section-tag { box-shadow: 3px 3px 0 #b3df4c; }
 .card, .skill-groups { box-shadow: 8px 8px 0 #b3df4c; }
-.about { background: rgba(244, 241, 232, .9); box-shadow: 10px 10px 0 #b3df4c; }
+.about { max-width: 1080px; padding: clamp(38px, 5vw, 64px) 5vw; background: rgba(244, 241, 232, .9); box-shadow: 10px 10px 0 #b3df4c; }
 .about { grid-template-columns: 1fr; gap: 12px; }
 .about-copy { min-width: 0; }
 .about .about-intro { margin: 0 0 25px; font: italic 500 clamp(1.45rem, 2.8vw, 2.25rem)/1.25 Georgia, "Times New Roman", serif; letter-spacing: -.025em; }
