@@ -1,4 +1,4 @@
-# Scripts and Extensions
+# Extensions
 
 Reusable, configurable browser-extension templates for repetitive web workflows.
 
