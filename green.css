@@ -12,6 +12,8 @@ body { background-image: radial-gradient(#c7d0c5 1.1px, transparent 1.1px); }
 .card span { width: 32px; height: 32px; }
 .card h3 { margin: 16px 0 7px; font-size: 1.25rem; }
 .card p { font-size: .8rem; line-height: 1.38; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 5px 12px; margin-top: auto; }
+.card .card-actions a { margin-top: 0; font-size: .78rem; }
 .more-projects { display: table; margin: 42px auto 0; padding: 8px 14px; border: 1px solid var(--ink); background: var(--yellow); box-shadow: 4px 4px 0 var(--lime); font: italic 600 .95rem/1.4 Georgia, "Times New Roman", serif; transform: rotate(-1deg); }
 .projects-intro { max-width: 790px; margin: -28px 0 48px; color: var(--muted); font-size: 1.05rem; }
 .hero { box-shadow: 0 14px 0 #9fca3d; }
